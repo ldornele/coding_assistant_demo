@@ -11,12 +11,11 @@ llm = VLLMOpenAI(
     openai_api_key=API_KEY,
     openai_api_base=API_URL+"/v1",
     model_name="granite-3-1-8b-instruct-w4a16",
-    model_kwargs={"stop": ["."]},
+    temperature=0.2,    
 )
 
 def review_golang_code(code):
     prompt = f"""You are an experienced Go code reviewer. Review the following code and point out potential errors, style improvement suggestions, security issues, and refactoring opportunities:\n\n```go\n{code}\n```\n\nProvide your feedback clearly and concisely, listing the issues found and suggestions for correction."""
-    print(prompt)
     feedback = llm.invoke(prompt)
     return feedback
 
